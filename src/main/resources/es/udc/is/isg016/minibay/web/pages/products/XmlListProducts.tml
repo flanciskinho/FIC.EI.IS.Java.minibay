@@ -1,0 +1,13 @@
+<products total="${total}" show="${show}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+	<t:loop t:source="list" t:value="Product">
+        <product
+        	id="${product.productId}"
+        	category="${product.category.categoryName}"
+        	name="${product.productName}"
+        	seller="${product.owner.loginName}"
+        	ends="${endDate}"
+        	minutesToEnd="${minutesToend}"
+        	price="${price}"
+        	/>
+    </t:loop>
+</products>

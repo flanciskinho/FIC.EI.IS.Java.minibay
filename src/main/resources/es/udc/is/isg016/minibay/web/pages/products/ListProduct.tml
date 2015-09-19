@@ -1,0 +1,116 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+    xmlns:p="tapestry:parameter"
+    t:type="Layout" t:pageTitle="title">
+     
+	<div>
+		<t:SearchBar />
+	</div>
+
+	
+ <!-- 
+		<table
+			t:type="grid"
+			t:source="listProductGridDataSource"
+			t:rowsPerPage="rowsPerPage"
+			t:pagerPosition="top">
+		</table>
+-->
+
+
+
+
+		<t:grid
+			source="listProductGridDataSource"
+			add="userLogin, category"
+			row="Product"
+		    inPlace="true"
+			rowsPerPage="rowsPerPage"
+			exclude="productId, initDate, initPrice, Description, shipmentDescription, owner, windBid,  endPrice, version"
+			reorder="productName, userLogin, endDate,  currentPrice"
+			pagerPosition="both"
+			lean="literal:true">
+		    
+		
+			<p:productNameHeader>
+	 			<span class="list-table">
+					${message:productName}
+				</span>
+			</p:productNameHeader>
+			
+			<p:userLoginHeader>
+				<span class="list-table">
+					${message:userLogin}
+				</span>
+			</p:userLoginHeader>
+			
+			<p:categoryHeader>
+	 			<span class="list-table">
+						${message:category}
+				</span>
+			</p:categoryHeader>
+			
+			<p:endDateHeader>
+	 			<span class="list-table">
+					${message:endDate}
+				</span>
+			</p:endDateHeader>
+			
+			
+			<p:currentPriceHeader>
+	 			<span class="list-table">
+					${message:currentPrice}
+				</span>
+			</p:currentPriceHeader>
+		    
+		    
+		    
+		    <p:productNameCell>
+	 			<span class="list-table">
+				    <t:pagelink t:page="products/ProductDetails" t:context="product.productId">
+			            ${product.productName}
+			        </t:pagelink>
+		        </span>
+		    </p:productNameCell>
+		    
+		    <p:userLoginCell>
+		    	<span class="list-table">
+		    		${product.owner.loginName}
+		    	</span>
+		    </p:userLoginCell>
+		    
+		    <p:categoryCell>
+	 			<span class="list-table">
+		    		${product.category.categoryName}
+		    	</span>
+		    </p:categoryCell>
+		    
+		    <p:endDateCell>
+	 			<span class="list-table">
+		    		<t:output value="product.endDate.time" format="dateFormat"/>
+		    		&nbsp;
+		    		<t:output value="product.endDate.time" format="timeFormat"/>
+		    		
+		    	</span>
+		    </p:endDateCell>
+		    
+		    <p:currentPriceCell>
+	 			<span class="list-table">
+			    	<t:if test="product.currentPrice">
+						<t:output value="product.currentPrice" format="numberFormat"/>
+			    	<p:else>
+						<t:output value="product.initPrice" format="numberFormat"/>
+						${message:noBid}
+			    	</p:else>
+			    	</t:if>
+			    </span>
+		    </p:currentPriceCell>
+		
+			<p:empty>
+				<p class="not-found">
+					${message:noProducts}
+				</p>
+			</p:empty>
+		</t:grid>
+	
+
+</html>

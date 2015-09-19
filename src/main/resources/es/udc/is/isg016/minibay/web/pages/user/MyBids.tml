@@ -1,0 +1,107 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+    xmlns:p="tapestry:parameter"
+    t:type="Layout" t:pageTitle="title"
+    t:menuExplanation="menuExplanation">
+     
+	<div>
+		<t:SearchBar />
+	</div>
+
+
+		<t:grid
+			source="listBidGridDataSource"
+			add="userLogin,productName,currentPrice,endDate"
+			row="Bid"
+		    inPlace="true"
+			rowsPerPage="rowsPerPage"
+			exclude="user,bidId"
+			reorder="productName, userLogin, currentPrice, bidDate, maxPrice, endDate"
+			pagerPosition="both"
+			lean="literal:true">
+
+			<p:productNameHeader>
+				<span class="list-table">
+					${message:productName}
+				</span>
+			</p:productNameHeader>		    
+			
+			<p:userLoginHeader>
+				<span class="list-table">
+					${message:userLogin}
+				</span>
+			</p:userLoginHeader>
+			
+			<p:currentPriceHeader>
+				<span class="list-table">
+					${message:currentPrice}
+				</span>
+			</p:currentPriceHeader>
+			
+			<p:bidDateHeader>
+	 			<span class="list-table">
+					${message:bidDate}
+				</span>
+			</p:bidDateHeader>
+			
+			
+			<p:maxPriceHeader>
+	 			<span class="list-table">
+					${message:maxPrice}
+				</span>
+			</p:maxPriceHeader>
+			
+			<p:endDateHeader>
+				<span class="list-table">
+					${message:endDate}
+				</span>
+			</p:endDateHeader>			
+		    
+		    <p:productNameCell>
+		    	<span class="list-table">
+				    <t:pagelink t:page="products/ProductDetails" t:context="bid.product.productId">		    	
+		    			${bid.product.productName}
+		    		</t:pagelink>
+		    	</span>
+		    </p:productNameCell>		    
+		    
+		    <p:userLoginCell>
+		    	<span class="list-table">
+		    		${bid.product.winBid.user.loginName}
+		    	</span>
+		    </p:userLoginCell>
+		    
+			<p:currentPriceCell>
+				<span class="list-table">
+					${bid.product.currentPrice}
+				</span>
+			</p:currentPriceCell>
+					    
+		    <p:bidDateCell>
+	 			<span class="list-table">
+		    		<t:output value="bid.bidDate.time" format="dateFormat"/>
+		    		&nbsp;
+		    		<t:output value="bid.bidDate.time" format="timeFormat"/>
+		    	</span>
+		    </p:bidDateCell>
+		    
+		    <p:maxPriceCell>
+	 			<span class="list-table">
+					<t:output value="bid.maxPrice" format="numberFormat"/>
+			    </span>
+		    </p:maxPriceCell>
+			
+			<p:endDateCell>
+	 			<span class="list-table">
+		    		<t:output value="bid.product.endDate.time" format="dateFormat"/>
+		    		&nbsp;
+		    		<t:output value="bid.product.endDate.time" format="timeFormat"/>
+		    	</span>
+			</p:endDateCell>			
+			
+			<p:empty>
+				<p class="not-found">
+					${message:noBids}
+				</p>
+			</p:empty>
+		</t:grid>
+</html>

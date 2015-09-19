@@ -1,0 +1,132 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+    xmlns:p="tapestry:parameter"
+    t:type="Layout" t:pageTitle="title">
+
+	<div>
+		<t:SearchBar />
+	</div>
+    
+    <t:if test="product">
+    
+        <t:if test="userSession">
+			<t:if test="winnerBid">
+				<div class="t-inform">
+					${message:WinnerBid}
+						<t:pagelink class="t-button"  t:page="bids/DoBid" t:context="product.productId" id="makeBid">
+							${message:IncrementBid}
+			        	</t:pagelink>
+				</div>
+			<p:else>
+				<t:if test="canStillBid">
+					<div class="t-inform">
+						${message:CanStillBid}
+						<t:pagelink class="t-button"  t:page="bids/DoBid" t:context="product.productId"  id="makeBid">
+							${message:Bid}
+			        	</t:pagelink>
+					</div>
+				<p:else>
+					<t:if test="winnerBid">
+						<div class="t-inform">
+							${message:YouWonBid}
+						</div>
+					<p:else>
+						<div class="t-red">
+							${message:CloseBid}
+						</div>
+					</p:else>
+					</t:if>
+				</p:else>
+				</t:if>
+			</p:else>
+			</t:if>
+		
+		<p:else>
+		<!-- El usuario no inicio la sesion -->
+			<t:if test="canStillBid">
+				<div class="t-inform">
+					${message:StartSesionToBid}
+				</div>
+			<p:else>
+				<div class="t-red">
+					${message:CloseBid}
+				</div>
+			</p:else>
+			</t:if>
+		</p:else>
+		</t:if>
+    
+
+    	<table class="typical-table">
+    		<tr>
+    			<td class="header-table">${message:product}</td>
+    			<td id="productName">${product.productName}</td>
+    		</tr>
+    		<tr>
+    			<td class="header-table">${message:category}</td>
+    			<td id="categoryName">${product.category.categoryName}</td>
+    		</tr>
+    		<tr>
+    			<td class="header-table">${message:description}</td>
+    			<td id="description">${product.description}</td>
+    		</tr>
+    		<tr>
+    			<td class="header-table">${message:shipmentDescription}</td>
+    			<td id="shipment">${product.shipmentDescription}</td>
+    		</tr>
+    		<tr>
+    			<td class="header-table">${message:initDate}</td>
+    			<td id="initTime">
+		    		<t:output value="product.initDate.time" format="dateFormat"/>
+		    		&nbsp;
+		    		<t:output value="product.initDate.time" format="timeFormat"/>
+    			</td>
+    		</tr>
+    		<tr>
+    			<td class="header-table">${message:endDate}</td>
+    			<td id ="endTime" >
+		    		<t:output value="product.endDate.time" format="dateFormat"/>
+		    		&nbsp;
+		    		<t:output value="product.endDate.time" format="timeFormat"/>
+		    		
+    			</td>
+    		</tr>
+    		
+    		<t:if test="canStillBid">
+    			<tr>
+    				<td class="header-table">${message:minutesToEnd}</td>
+    				<td>${minutesToEnd}</td>
+    			</tr>
+    		</t:if>
+    		
+    		
+    		<tr>
+    			<td class="header-table">${message:initPrice}</td>
+    			<td id="initPrice">
+    				<t:output value="product.initPrice" format="numberFormat"/>
+    			</td>
+    		</tr>
+    		<tr>
+    			<td class="header-table">${message:currentPrice}</td>
+    			<td id="currentPrice">
+    				<t:if test="product.currentPrice">
+						<t:output value="product.currentPrice" format="numberFormat"/>
+			    	<p:else>
+						${message:noBids}
+			    	</p:else>
+			    	</t:if>
+    			</td>
+    		</tr>
+    		<tr>
+    			<td class="header-table">${message:owner}</td>
+    			<td id="owner">${product.owner.loginName}</td>
+    		</tr>
+    	</table>
+
+    <p:else>
+	    <div class="not-found">
+	    	${message:productNotFound}
+	    </div>
+    </p:else>
+    </t:if>
+    
+</html>

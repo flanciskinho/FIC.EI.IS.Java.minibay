@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	  xmlns:p="tapestry:parameter">
+
+<head>
+	<title>${pageTitle}</title>
+	<link rel="StyleSheet" href="${context:/css/styles.css}"
+		  type="text/css" media="all"/>
+</head>
+
+<body>
+
+<noscript class="js-required">
+	<p class="t-red">
+       ${message:javascript_required}
+    </p>
+</noscript>
+
+<!-- Window. -->
+
+<div id="window">
+
+<!-- Page title. -->
+
+<div id="pageTitle">
+	<t:pagelink t:page="Index" id="indexLink">
+		<div align="center">
+       		${message:header} 
+		</div>
+	</t:pagelink>
+</div>
+
+
+
+<!-- Menu. -->
+
+<div id="menu">
+	<span id="menuWelcome">
+  		<t:if test="userSession">
+ 			${message:menu-hello} ${userSession.firstName} -
+            <p:else>
+            	${message:menu-welcome} -
+            </p:else>
+		</t:if>
+    </span>
+  
+    <t:if test="menuExplanation">
+	 	<span id="menuExplanation">
+ 			${menuExplanation}
+ 		</span>
+        <p:else>
+		    <span id="menuLinks">
+				<t:if test="userSession"> 
+			        <p:else>
+				    	<a href="#" t:type="PageLink" t:page="user/Login">${message:menu-authenticate}</a>
+					</p:else>
+				</t:if>
+			</span>
+        </p:else>
+ 	</t:if>
+</div>
+
+
+<!-- Content. -->  
+<div id="content">
+  	<t:body/>
+</div>
+
+
+<!-- Sidebar. -->
+
+<div id="sidebar">
+	<t:if test="userSession">
+		<ul>
+			<li>
+				<a href="#" t:type="PageLink" t:page="Index">${message:menu-index}</a>
+			</li>
+			<li>
+				<a href="#" t:type="PageLink" t:page="user/MyAccount">
+					${message:menu-myAccount}
+				</a>
+			</li> 
+			<li>
+				<a href="#" t:type="PageLink" t:page="user/MyBids">
+					${message:menu-MyBids}
+				</a>
+			</li>
+			<li>
+				<a href="#" t:type="PageLink" t:page="user/MyProducts">
+					${message:menu-MyProducts}
+				</a>
+			</li>
+			
+			<t:if test="seller">
+				<li>
+					<a href="#" t:type="PageLink" t:page="products/AddProduct">
+						${message:menu-addProduct}
+					</a>
+				</li>
+			</t:if>
+			
+			<li>
+				<a href="#" t:type="ActionLink" t:id="logout">
+					${message:menu-logout}
+				</a>
+			</li>
+		</ul>
+	</t:if>
+</div>
+
+
+
+
+<!-- Body footer. -->
+
+<div id="footer">
+    <div align="center">
+       ${message:footer}
+    </div>
+</div>
+
+<!-- End of "window" id. -->
+
+</div>
+
+<!-- End of HTML body. -->
+
+</body>
+
+</html>

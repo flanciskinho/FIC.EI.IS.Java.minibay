@@ -1,0 +1,130 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+    xmlns:p="tapestry:parameter"
+    t:type="Layout" t:pageTitle="title">
+
+	<div>
+		<t:SearchBar />
+	</div>
+
+	<t:if test="product">
+
+		<t:if test="canStillBid">
+			<t:if test="winnerBid">
+				<div class="t-inform">
+					${message:WinnerBid}
+				</div>
+			</t:if> 
+		<p:else>
+			<t:if test="winnerBid">
+				<div class="t-inform">
+					${message:YouWonBid}
+				</div>
+			<p:else>
+				<div class="t-red">
+					${message:CloseBid}
+				</div>
+			</p:else>
+			</t:if>
+		</p:else>
+		</t:if>
+   
+
+
+    	<table class="typical-table" id="details-toBid">
+    		<tr>
+    			<td class="header-table">${message:product}</td>
+    			<td id="productName">${product.productName}</td>
+    		</tr>
+    		
+    		<tr>
+    			<td class="header-table">${message:owner}</td>
+    			<td id="owner">${product.owner.loginName}</td>
+    		</tr>
+    		
+    		<tr>
+    			<td class="header-table">${message:category}</td>
+    			<td id="categoryName">${product.category.categoryName}</td>
+    		</tr>
+    		
+    		<tr>
+    			<td class="header-table">${message:description}</td>
+    			<td id="description">${product.description}</td>
+    		</tr>
+    		
+    		<tr>
+    			<td class="header-table">${message:shipmentDescription}</td>
+    			<td id="shipment">${product.shipmentDescription}</td>
+    		</tr>
+    		
+    		<tr>
+    			<td class="header-table">${message:endDate}</td>
+    			<td  id="endTime">
+		    		<t:output value="product.endDate.time" format="dateFormat"/>
+		    		&nbsp;
+		    		<t:output value="product.endDate.time" format="timeFormat"/>
+    			</td>
+    		</tr>
+    		
+    		
+    		<tr>
+    			<td class="header-table">${message:initPrice}</td>
+    			<td  id="initPrice">
+    				<t:output value="product.initPrice" format="numberFormat"/>
+    			</td>
+    		</tr>
+    		
+    		<tr>
+    			<td class="header-table">${message:currentPrice}</td>
+    			<td  id="currentPrice">
+    				<t:if test="product.currentPrice">
+						<t:output value="product.currentPrice" format="numberFormat"/>
+			    	<p:else>
+						${message:noBids}
+			    	</p:else>
+			    	</t:if>
+    			</td>
+    		</tr>
+    		
+    	</table>
+    	
+    	
+    	<t:if test="canStillBid">
+	    	<!-- Formulario para la puja -->
+	    	<t:zone t:id="zoneForm" id="zoneForm">
+		    	<form t:type="Form" t:id="makeBid" class="t-doBid" t:zone="^">
+					<t:errors/>
+					
+					<div>
+						<t:label for="bidInput">
+							<b>${message:bidInput}</b>
+						</t:label>
+						       
+						<input class="t-text" 
+							t:id="bidInput"
+							t:type="TextField"
+							t:validate="required"
+							size="16"
+							maxlength="100"
+							value="bidValue"/>
+							       
+						<input class="t-button" type="submit" value="${message:bidding}" id="submitBid"/>
+					</div>
+					
+					<div>
+						<p id="minimunBid">
+							${message:minBid} <t:output value="minBid" format="numberFormat"/>
+						</p>
+					</div>
+			    
+				</form>
+			</t:zone>
+		</t:if>
+
+    <p:else>
+	    <div class="not-found">
+	    	${message:productNotFound}
+	    </div>
+    </p:else>
+    </t:if>
+
+</html>

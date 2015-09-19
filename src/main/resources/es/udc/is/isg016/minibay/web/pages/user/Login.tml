@@ -1,0 +1,45 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	t:type="Layout" t:pageTitle="title" 
+	t:menuExplanation="menuExplanation">
+
+	<p>
+		<a href="#" t:type="PageLink" t:page="user/Register">${message:register}</a>		       
+	</p>
+
+	<form t:type="Form" t:id="loginForm">
+	   <t:errors/>
+	   		<table id="login-table" class="typical-table">
+			<tr>     
+				<td class="header-table">  
+					<t:label for="loginName"/>
+					&nsbp;
+				</td>
+				<td> 
+	            	<input t:id="loginName" t:type="TextField" t:validate="required" 
+				       size="16" maxlength="30" />
+				</td>
+			</tr>
+			<tr>     
+				<td class="header-table">  
+	        		<t:label for="password"/>
+					&nsbp;
+				</td>
+				<td> 
+	            	<input t:id="password" t:type="PasswordField" t:validate="required" 
+	                   size="16" maxlength="8"/>
+				</td>
+			</tr>
+		</table>
+	    
+	    <div class="field">
+            <t:label for="rememberMyPassword"/>
+	        <span class="entry">    
+	            <input t:type="Checkbox" t:id="rememberMyPassword" /> 
+	        </span>
+	    </div>
+	    
+	    <input class="t-button" id="loginButton" type="submit" value="${message:submit}"/>        
+	    
+	</form>
+	
+</html>

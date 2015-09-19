@@ -1,0 +1,105 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	t:type="Layout" t:pageTitle="title" 
+	t:menuExplanation="menuExplanation">
+	
+	<t:zone t:id="zoneForm" id="zoneForm">
+		<form t:type="Form" t:id="addProductForm" t:zone="^">
+		
+			<t:errors/>
+		   
+			<table class="typical-table">
+		   
+				<tr>     
+					<td class="header-table">  
+						<t:label for="productName">
+							${message:productName}
+						</t:label>
+						&nsbp;
+						<t:select
+							t:id="selectCategory"
+							t:validate="required"
+							t:model="category"
+							t:blankLabel="${message:select-category}"
+							value="selectValue"/>
+					</td>
+					<td> 
+						<input t:id="productName" t:type="TextField"
+								t:validate="required" 
+								size="50" maxlength="100" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="header-table">        
+						<t:label for="productDescription">
+							${message:productDescription}
+						</t:label>
+					</td>
+					<td>
+						<input t:id="productDescription" t:type="TextField"
+								t:validate="required" 
+								size="50" maxlength="255"/>
+					</td>
+				</tr>
+				
+				<tr>    
+					<td class="header-table">        
+						<t:label for="dShipment">
+							${message:dShipment}
+						</t:label>
+					</td>
+					<td>    
+						<input t:id="dShipment" t:type="TextField"
+								t:validate="required" 
+								size="50" maxlength="255" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="header-table">        
+						<t:label for="initPrice">
+							${message:initPrice}
+						</t:label>
+					</td>
+					<td>    
+						<input t:id="initPrice" t:type="TextField"
+								t:validate="required" 
+								size="50" maxlength="15" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="header-table">
+						<t:label for="endDate">	
+							${message:endDate}
+						</t:label>
+					</td>
+					<td>    
+						<t:datefield t:id="endDate"
+									t:validate="required" 
+									size="16" maxlength="15" />
+					</td>
+				</tr>
+				<tr>
+					<td class="header-table">
+						<t:label for="time">	
+							${message:endTime} <br />
+							(${message:time-format})
+						</t:label>
+					</td>
+					<td>    
+						<t:textField t:id="time"
+									t:validate="required,regexp" 
+									size="16" maxlength="15" />
+					</td>
+				</tr>
+	
+			</table>
+	
+			<div>
+				<input class="t-button" type="submit" value="${message:submit}"/>        
+			</div>
+	
+		</form>
+	</t:zone>
+</html>

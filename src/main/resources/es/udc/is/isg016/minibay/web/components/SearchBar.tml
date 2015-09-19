@@ -1,0 +1,28 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+
+<t:content class="searchBar">
+
+	<!-- Formulario para la barra de busqueda -->
+    <form t:type="Form" t:id="findProducts">
+    	<t:errors />
+    
+		<input
+			class="t-text"
+			t:type="TextField"
+			t:id="keywords"
+			size="30" maxlength="100"
+			value="keywordsValue"/>
+			
+    	<t:select
+    		t:id="selectCategory"
+    		t:model="category"
+    		t:blankLabel="${message:select-category}"
+    		value="selectValue"/>
+    	
+		<input class="t-button" type="submit" value="${message:button-find}"/>
+    </form>
+    
+</t:content>
+
+
+</html>

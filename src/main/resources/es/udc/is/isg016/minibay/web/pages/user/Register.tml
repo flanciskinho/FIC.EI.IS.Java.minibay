@@ -1,0 +1,75 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	t:type="Layout" t:pageTitle="title" 
+	t:menuExplanation="menuExplanation">
+
+	<form t:type="Form" t:id="registrationForm">
+	   <t:errors/>
+	   
+		<table id="register-table" class="typical-table">
+			<tr>     
+				<td class="header-table">  
+					<t:label for="loginName"/>
+					&nsbp;
+				</td>
+				<td> 
+	            	<input t:id="loginName" t:type="TextField" t:validate="required" 
+				       size="16" maxlength="30" />
+				</td>
+			</tr>
+			<tr>     
+				<td class="header-table">  
+	        		<t:label for="password"/>
+					&nsbp;
+				</td>
+				<td> 
+	            	<input t:id="password" t:type="PasswordField" t:validate="required" 
+	                   size="16" maxlength="8"/>
+				</td>
+			</tr>
+			<tr>     
+				<td class="header-table">  
+	        		<t:label for="retypePassword"/>
+					&nsbp;
+				</td>
+				<td> 
+	            	<input t:id="retypePassword" t:type="PasswordField" t:validate="required" 
+	                   size="16" maxlength="8"/>
+				</td>
+			</tr>
+			<tr>     
+				<td class="header-table">  
+	        		<t:label for="firstName"/>
+					&nsbp;
+				</td>
+				<td>    
+	            	<input t:id="firstName" t:type="TextField" t:validate="required" 
+				       size="16" maxlength="30" />
+				</td>
+			</tr>
+			<tr>     
+				<td class="header-table">  
+	        		<t:label for="lastName"/>
+					&nsbp;
+				</td>
+				<td>    
+	           		<input t:id="lastName" t:type="TextField" t:validate="required" 
+				       size="16" maxlength="30" />
+				</td>
+			</tr>
+			<tr>     
+				<td class="header-table">  
+	        		<t:label for="email"/>
+					&nsbp;
+				</td>
+				<td>    
+	            	<input t:id="email" t:type="TextField" t:validate="required,regexp" 
+				       size="16" maxlength="30" />
+				</td>
+			</tr>
+		</table>	   
+	    
+	        <input class="t-button" type="submit" value="${message:submit}"/>        
+	    
+	</form>
+	
+</html>

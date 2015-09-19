@@ -1,0 +1,19 @@
+<products xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+		  xmlns:p="tapestry:parameter">
+	<t:if test="product">
+		<product
+			winBid="${winner}"
+			winUserId="${winnerId}"			
+			name="${product.productName}"
+			category="${product.category.categoryName}"
+			owner="${product.owner.loginName}"
+			initDate="${initDate}"
+			endDate="${endDate}"
+			minutesToEnd="${minutesToEnd}"
+			description="${product.description}"
+			iPrice="${product.initPrice}"
+			dShipment="${product.shipmentDescription}"
+			cPrice="${price}"
+		/>
+    </t:if>
+</products>

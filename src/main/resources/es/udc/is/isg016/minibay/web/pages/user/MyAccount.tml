@@ -1,0 +1,179 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+    xmlns:p="tapestry:parameter"
+    t:type="Layout" t:pageTitle="title"
+	t:menuExplanation="menuExplanation">
+
+<!-- - - - - - - - - - - -  - - - - - - -->
+	<!-- - - - - - - - - - - -  - - - - - - -->
+	<!-- Parte para la informacion basica   -->
+	<!-- - - - - - - - - - - -  - - - - - - -->
+	<!-- - - - - - - - - - - -  - - - - - - -->
+
+	<h1>${message:basicInfo}</h1>
+	<t:zone t:id="zoneFormInfo" id="zoneFormInfo">
+		<form t:type="Form" t:id="changeInfo" t:zone="^">
+
+			<t:errors/>
+			
+			<h2 class="color-inform">${okInfo}</h2>
+			<t:errors />
+		
+			<table class="typical-table">
+				<tr>
+					<td class="header-table">  
+						${message:loginName}
+					</td>
+					<td> 
+						${userProfile.loginName}
+					</td>
+				</tr>
+				
+				<tr>     
+					<td class="header-table">
+						<t:label for="firstName">
+							${message:firstName}
+						</t:label>
+					</td>
+					<td> 
+						<input t:id="firstName" t:type="TextField" t:validate="required" 
+					       size="30" maxlength="50" />
+					</td>
+				</tr>
+				<tr>     
+					<td class="header-table">
+						<t:label for="lastName"> 
+							${message:lastName}
+						</t:label>
+					</td>
+					<td> 
+						<input t:id="lastName" t:type="TextField" t:validate="required" 
+					       size="30" maxlength="50" />
+					</td>
+				</tr>
+				
+				<tr>     
+					<td class="header-table">
+						<t:label for="email">  
+							${message:emailAddress}
+						</t:label>
+					</td>
+					<td> 
+						<input t:id="email" t:type="TextField" t:validate="required,regexp" 
+					       size="30" maxlength="70" />
+					</td>
+				</tr>
+			</table>
+			
+			<input class="t-button" type="submit" value="${message:update}" id="submitFormInfo"/>
+		</form>
+	</t:zone>
+	
+	<!-- - - - - - - - - - - -  - - - - - - -->
+	<!-- - - - - - - - - - - -  - - - - - - -->
+	<!-- Parte para el cambio de contrasena -->
+	<!-- - - - - - - - - - - -  - - - - - - -->
+	<!-- - - - - - - - - - - -  - - - - - - -->
+	
+	<h1>${message:changePassword}</h1>
+	<t:zone t:id="zoneFormPassword" id="zoneFormPassword">
+		<form t:type="Form" t:id="changePassword" t:zone="^">
+
+			<t:errors/>
+			
+			<h2 class="color-inform">${okPassword}</h2>
+			
+			<table class="typical-table">
+				<tr>     
+					<td class="header-table">
+						<t:label for="oldPassword">  
+							${message:oldPassword-label}
+						</t:label>
+					</td>
+					<td> 
+						<input t:id="oldPassword" t:type="PasswordField" t:validate="required" 
+			                   size="30" maxlength="50"/>
+					</td>
+				</tr>
+				<tr>     
+					<td class="header-table">  
+						<t:label for="newPassword">  
+							${message:newPassword-label}
+						</t:label>
+					</td>
+					<td> 
+						<input t:id="newPassword" t:type="PasswordField" t:validate="required" 
+			                   size="30" maxlength="50"/>
+					</td>
+				</tr>
+				<tr>     
+					<td class="header-table">
+						<t:label for="retypeNewPassword">  
+							${message:retypeNewPassword-label}
+						</t:label>
+					</td>
+					<td> 
+						<input t:id="retypeNewPassword" t:type="PasswordField" t:validate="required" 
+			                   size="30" maxlength="50"/>
+					</td>
+				</tr>
+			</table>
+			
+			<input class="t-button" type="submit" value="${message:update}" id="submitFormPassword"/>
+		</form>
+	</t:zone>
+	<!-- - - - - - - - - - - -  - - - - - - -->
+	<!-- - - - - - - - - - - -  - - - - - - -->
+	<!-- Parte para el cambio de tarjeta  - -->
+	<!-- - - - - - - - - - - -  - - - - - - -->
+	<!-- - - - - - - - - - - -  - - - - - - -->
+	
+	
+	<h1>${message:card}</h1>
+	<t:zone t:id="zoneFormCard" id="zoneFormCard">
+		<form t:id="changeCard" t:type="form" t:zone="^">
+
+			<t:errors/>
+			
+			<h2 class="color-inform">${okCard}</h2>
+			
+			<table class="typical-table">
+				<tr>     
+				<td class="header-table">  
+					<t:label for="cardNumber">
+						${message:cardNum}
+					</t:label>
+				</td>
+					<td> 
+						<input t:id="cardNumber" t:type="TextField" t:validate="required" 
+							size="30" maxlength="70" />
+					</td>
+				</tr>
+				<tr>     
+					<td class="header-table">  
+						${message:expiryDate}
+					</td>
+					<td>     
+						<t:label for="monthExpire">
+							${message:mm}
+						</t:label>
+					     <t:select
+	    					t:id="monthExpire"
+	    					t:model="months"
+	    					t:validate="required"/>
+					       
+						<t:label for="yearExpire">
+							${message:yyyy}
+						</t:label>
+					     <t:select
+	    					t:id="yearExpire"
+	    					t:model="years"
+	    					t:validate="required"/>
+					</td>
+				</tr>
+			</table>
+			
+			<input class="t-button" type="submit" value="${message:update}" id="submitFormCard"/>
+
+		</form>
+	</t:zone>
+</html>
